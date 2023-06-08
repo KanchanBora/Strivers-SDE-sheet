@@ -1,23 +1,13 @@
 #include <bits/stdc++.h> 
 long long maxSubarraySum(int arr[], int n)
 {
-    long long c_sum=0;
-    long long maxsum= LONG_MIN;
-   
-    for(int i=0; i<n; i++)
-    {
-        c_sum= c_sum+ arr[i];
-
-        if(c_sum> maxsum)
-        {  
-             maxsum= c_sum;
-        }
-
-        if(c_sum<0 )
-        {
-            c_sum=0;
-        }
-        
+    long long currSum=0, maxSum=0;
+    for(int i=0; i<n; i++) {
+        currSum += arr[i];
+        maxSum = max(maxSum, currSum);
+        if(currSum < 0)
+            currSum=0;
     }
-    return maxsum;
+    return maxSum;
+    
 }
