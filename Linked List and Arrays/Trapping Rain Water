@@ -1,0 +1,11 @@
+#include <bits/stdc++.h> 
+long getTrappedWater(long *arr, int n){
+    // Write your code here.
+    long l = 0, r = n-1, level = 0, water = 0;
+    while (l < r) {
+        long lower = arr[arr[l] < arr[r] ? l++ : r--];
+        level = max(level, lower);
+        water += level - lower;
+    }
+    return water;
+}
