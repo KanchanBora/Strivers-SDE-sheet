@@ -1,1 +1,17 @@
+void func(int ind,int sum,vector<int>arr,vector<int> &sumOfSubsets){
+    if(ind==arr.size()){
+        sumOfSubsets.push_back(sum);
+        return;
+    }
+    func(ind+1,sum+arr[ind],arr,sumOfSubsets);
+    func(ind+1,sum,arr,sumOfSubsets);
+}
 
+vector<int> subsetSum(vector<int> &arr)
+{
+    // Write your code here
+    vector<int>sumOfSubsets;
+    func(0,0,arr,sumOfSubsets);
+    sort(sumOfSubsets.begin(),sumOfSubsets.end());
+    return sumOfSubsets;
+}
