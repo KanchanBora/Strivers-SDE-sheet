@@ -14,7 +14,6 @@ void findpermutations(int index, string&s, vector<string>&ans)
 }
 
 vector<string> findPermutations(string &s) {
-    // Write your code here.
     vector<string>ans;
     int index=0;
     findpermutations(index,s,ans);
