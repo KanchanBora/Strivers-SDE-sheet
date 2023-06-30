@@ -22,7 +22,6 @@ bool dfs(vector<vector<int>> &maze,int i,int j,vector<vector<int>> &ans,int n,ve
 vector<vector<int> > ratInAMaze(vector<vector<int> > &maze, int n){
     vector<vector<int>> ans(n,vector<int>(n,0));
     vector<vector<int>> res;
-
     dfs(maze,0,0,ans,n,res);
     return res;
 }
