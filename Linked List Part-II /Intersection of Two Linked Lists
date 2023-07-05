@@ -1,0 +1,52 @@
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+            int data;
+            Node *next;
+            Node()
+            {
+                this->data = 0;
+                next = NULL;
+            }
+            Node(int data)
+            {
+                this->data = data;
+                this->next = NULL;
+            }
+            Node(int data, Node* next)
+            {
+                this->data = data;
+                this->next = next;
+            }
+        };
+
+*****************************************************************/
+#include <unordered_set>
+Node* findIntersection(Node *firstHead, Node *secondHead)
+{
+    unordered_set<Node*> nodeSet;
+
+    // Traverse the first linked list and add nodes to the set
+    Node* currentA = firstHead;
+    while (currentA != nullptr) {
+        nodeSet.insert(currentA);
+        currentA = currentA->next;
+    }
+
+    // Traverse the second linked list and check if the nodes are in the set
+    Node* currentB = secondHead;
+    while (currentB != nullptr) {
+        // If the node is found in the set, it is the intersection point
+        if (nodeSet.find(currentB) != nodeSet.end()) {
+            return currentB;
+        }
+        currentB = currentB->next;
+    }
+
+    // No intersection found
+    return nullptr;
+}
