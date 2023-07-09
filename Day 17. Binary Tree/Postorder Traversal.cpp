@@ -14,23 +14,37 @@
 vector<int> getPostOrderTraversal(TreeNode *root)
 {
     // Write your code here.
-     vector<int> nodes;
-    stack<TreeNode*> todo;
-    TreeNode* last = NULL;
-    while (root || !todo.empty()) {
-        if (root) {
-            todo.push(root);
-            root = root -> left;
-        } else {
-            TreeNode* node = todo.top();
-            if (node -> right && last != node -> right) {
-                root = node -> right;
-            } else {
-                nodes.push_back(node -> data);
-                last = node;
-                todo.pop();
-            }
-        }
-    }
-    return nodes;
+     vector<int> postorder;
+    stack<TreeNode*> st;
+    TreeNode* curr = root;
+
+    while (curr!= NULL || !st.empty())
+     {
+        if (curr!= NULL) {
+            st.push(curr);
+            curr = curr -> left;
+        } 
+        else
+         {
+            TreeNode* tmp = st.top()->right;
+            
+            if (tmp==NULL) 
+                {
+                     tmp=  st.top();
+                      st.pop();
+                      postorder.push_back(tmp->data);
+
+                    while(!st.empty() && tmp== st.top()->right)
+                        {
+                            tmp= st.top();
+                            st.pop();
+                            postorder.push_back(tmp->data);
+                        }
+                }
+            else {
+                curr= tmp;
+                }
+         }
+     }
+    return postorder;
 }
