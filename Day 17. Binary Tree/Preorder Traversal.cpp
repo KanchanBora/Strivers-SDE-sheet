@@ -14,21 +14,23 @@
 vector<int> getPreOrderTraversal(TreeNode *root)
 {
     // Write your code here.
-    stack<TreeNode*> nodeStack;
+    stack<TreeNode*> st;
     vector<int> result;
     //base case
     if(root==NULL)
         return result;
-    nodeStack.push(root);
-    while(!nodeStack.empty())
+        
+    st.push(root);
+    while(!st.empty())
     {
-        TreeNode* node= nodeStack.top();
+        TreeNode* node= st.top();
         result.push_back(node->data);
-        nodeStack.pop();
+        st.pop();
+        
         if(node->right)
-            nodeStack.push(node->right);
+            st.push(node->right);
         if(node->left)
-            nodeStack.push(node->left);
+            st.push(node->left);
     }
     return result;
 }
