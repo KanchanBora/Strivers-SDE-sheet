@@ -14,26 +14,26 @@
 vector<int> getInOrderTraversal(TreeNode *root)
 {
     // Write your code here.
-    vector<int> vector;
-    if(!root)
-        return vector;
-    stack<TreeNode *> stack;
-    stack.push(root);
-    while(!stack.empty())
+    vector<int> inorder;
+    stack<TreeNode *> st;
+    TreeNode* node= root;
+
+    while(true)
     {
-        TreeNode *pNode = stack.top();
-        if(pNode->left)
-        {
-            stack.push(pNode->left);
-            pNode->left = NULL;
-        }
+       if(node!=NULL)
+       {
+           st.push(node);
+           node= node->left;
+       }
         else
         {
-            vector.push_back(pNode->data);
-            stack.pop();
-            if(pNode->right)
-                stack.push(pNode->right);
+            if(st.empty()== true)
+                break;
+            node= st.top();
+            st.pop();
+            inorder.push_back(node->data);
+            node= node->right;
         }
     }
-    return vector;
+    return inorder;
 }
