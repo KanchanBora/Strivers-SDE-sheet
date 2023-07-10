@@ -18,23 +18,28 @@
     };
 
 *************************************************************/
-
-bool ans;
-int checkBalance(BinaryTreeNode<int>* root){
-    if(!root)
+int dfsheight(BinaryTreeNode<int>* root)
+{
+    if(root==NULL)
         return 0;
-    if(!ans)
-        return 0;
-    int leftSubTree = checkBalance(root->left);
-    int rightSubTree = checkBalance(root->right);
-    if(abs(leftSubTree-rightSubTree) > 1){
-        ans = false;
-    }
-    return 1 + max(leftSubTree, rightSubTree);
+    
+    int lheight= dfsheight(root->left);
+    if(lheight==-1)
+        return -1;
+        
+    int rheight= dfsheight(root->right);
+    if(rheight==-1)
+        return -1;
+        
+    if(abs(lheight- rheight)>1)
+        return -1;
+        
+    return max(lheight,rheight)+1;
+    
 }
+    
 
 bool isBalancedBT(BinaryTreeNode<int>* root) {
-    ans = true;
-    int temp = checkBalance(root);
-    return ans;
+    // Write your code here.
+    return dfsheight(root)!=-1;
 }
