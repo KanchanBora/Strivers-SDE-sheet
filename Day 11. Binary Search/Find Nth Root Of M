@@ -1,28 +1,16 @@
-double multiply(double number, int n)
-{
-  double ans= 1.0;
-  for(int i=1; i<=n;i++)
-  {
-    ans= ans* number;
-  }
-  return ans;
-}
-
 int NthRoot(int n, int m) {
-    double low= 1;
-    double high= m;
-    double eps= 1e-6;
-
-    while((high-low)> eps)
+    if(m == 1 || n == 1)
+      return m;
+    int start = 2, end = m - 1,mid = 0;
+    while(start <= end)
     {
-      double mid= (low+high)/2.0;
-      if(multiply(mid, n)< m)
-      {
-        low= mid;
-      }
-      else{
-        high= mid;
-      }
+        mid = start + (end - start)/2;
+        if(pow(mid, n) == m)
+          return mid;
+        else if(pow(mid, n) > m)
+          end = mid - 1;
+        else  
+          start = mid + 1;
     }
-     return high;
+    return -1;
 }
